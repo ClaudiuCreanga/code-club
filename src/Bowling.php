@@ -20,7 +20,7 @@ class Bowling
      */
     public function setTries($tries)
     {
-        $this->tries = $tries;
+        $this->tries[] = $tries;
     }
 
 
@@ -40,19 +40,31 @@ class Bowling
         $this->playerScore = $playerScore;
     }
 
-    public function runGame()
+    public function runGame($type)
     {
-        for($i = 1; $i <= 10; $i++){
-            $this->setTries($i);
-
+        $this->generateTriesScore($type);
+        foreach ($this->getTries() as $try)
+        {
+            $this->setPlayerScore($this->getPlayerScore() + array_sum($try));
         }
     }
 
-    public function generateTriesScore()
+    public function generateTriesScore($type)
     {
-        for($i = 1; $i <= 10; $i++){
-            $this->setTries([ $i => [rand(0,9), rand(0,9)]]);
+        if ($type == 0){
+            for($i = 1; $i <= 10; $i++){
+                $this->setTries([rand(0,0), rand(0,0)]);
+            }
+        } elseif ($type == "spares"){
+
+        } elseif ($type == "strike"){
+
+        } else {
+            for($i = 1; $i <= 10; $i++){
+                $this->setTries([rand(0,9), rand(0,9)]);
+            }
         }
+
     }
 
 

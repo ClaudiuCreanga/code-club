@@ -16,7 +16,7 @@ class BowlingSpec extends ObjectBehavior
     function it_runs_a_game()
     {
         $this->runGame();
-        $this->getTries()->shouldReturn(10);
+        $this->getTries()->shouldHaveCount(10);
     }
 
     function it_returns0_gutter_game()
@@ -27,5 +27,8 @@ class BowlingSpec extends ObjectBehavior
     function it_generates_tries_score()
     {
         $this->generateTriesScore();
+        $this->getTries()->shouldHaveCount(10);
     }
+
+
 }

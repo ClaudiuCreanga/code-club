@@ -11,6 +11,7 @@ class BowlingContext implements Context
 {
 
     public $bowling;
+
     /**
      * Initializes context.
      *
@@ -32,20 +33,42 @@ class BowlingContext implements Context
     }
 
     /**
-     * @When Player completes a game
+     * @When Player completes a game with :type
      */
-    public function playerCompletesAGame()
+    public function playerCompletesAGame($type)
     {
-        $this->bowling->runGame();
+        $this->bowling->runGame($type);
     }
 
     /**
-     * @Then The score should be :arg1
+     * @Then The score should be :score
      */
-    public function theScoreShouldBe($arg1)
+    public function theScoreShouldBe($score)
     {
-        PHPUnit\Framework\Assert::assertSame($this->bowling->getPlayerScore() ,(int)$arg1);
+        PHPUnit\Framework\Assert::assertSame($this->bowling->getPlayerScore() ,(int)$score);
+    }
+
+    /**
+     * @Then The score should be sum of tries
+     */
+    public function theScoreShouldBeSumOf()
+    {
+        $score = 0;
+        foreach ($this->bowling->getTries() as $try){
+            $score += array_sum($try);
+        };
+        PHPUnit\Framework\Assert::assertSame($score, $this->bowling->getPlayerScore());
+    }
+
+    /**
+     * @Then The score should be sum of tries and spares
+     */
+    public function theScoreShouldBeSumOfTriesAndSpares()
+    {
+
     }
 
 }
+
+
 
