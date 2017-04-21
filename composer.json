@@ -5,10 +5,16 @@
     },
     "autoload": {
         "psr-0": {
-            "": "src/"
-        }
+            "": ["src"]
+        },
+        "files": [
+            "src/functions/parsers.php"
+        ]
     },
     "require": {
-        "behat/behat": "^3.3"
+        "behat/behat": "^3.3",
+        "phunkie/phunkie": "0.6.0",
+        "phunkie/phunkie-console": "0.3.0",
+        "kahlan/kahlan": "^3.1"
     }
 }
